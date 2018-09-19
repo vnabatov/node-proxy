@@ -2,6 +2,11 @@ const app = require('express')();
 const apiProxy = require('http-proxy').createProxyServer();
 const DEFAULT_PORT = 8000;
 
+apiProxy.on('proxyRes', function(proxyRes, req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+});
+
 app.all("*", function(req, res) {  
 		const r = req.query.r;
 		const protocol = r.split(":")[0];
