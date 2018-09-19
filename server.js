@@ -1,4 +1,3 @@
-//http://localhost:8000/?r=https://dcmdev.wiley.com/alfresco/s/com/wiley/wpp/cmh/dcm/version
 const app = require('express')();
 const apiProxy = require('http-proxy').createProxyServer();
 const DEFAULT_PORT = 8000;
