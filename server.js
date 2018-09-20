@@ -6,6 +6,11 @@ apiProxy.on('proxyRes', function(proxyRes, req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
 });
+apiProxy.on('error', function(proxyRes, req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.send(`{"error":"Request ${req.query.r} was failed"}`);
+});
 
 app.all("*", function(req, res) {  
 		const r = req.query.r;
@@ -19,7 +24,7 @@ app.all("*", function(req, res) {
 			apiProxy.web(req, res, {
 				target,
 				changeOrigin: true,
-			        protocol: 'https:',
+					protocol: 'https:',
 				port: 443,
 				secure: false
 			});
