@@ -24,7 +24,7 @@ app.all("*", function(req, res) {
 			apiProxy.web(req, res, {
 				target,
 				changeOrigin: true,
-					protocol: 'https:',
+				protocol: 'https:',
 				port: 443,
 				secure: false
 			});
